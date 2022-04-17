@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:medics/components/already_have_an_account_check.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/components/rounded_password_field.dart';
+import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/signup_screen/components/background.dart';
 
@@ -16,20 +14,20 @@ class Body extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 40),
+          const Padding(
+            padding: EdgeInsets.only(top: 40),
             child: Text(
               "Medics",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
-          Text(
+          const Text(
             "'Because Your Life Matters'",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           SizedBox(height: size.height * 0.05),
-          Padding(
-            padding: const EdgeInsets.only(right: 100, top: 100),
+          const Padding(
+            padding: EdgeInsets.only(right: 100, top: 100),
             child: Text(
               "Be."
               "\nPart of US.",
@@ -56,8 +54,30 @@ class Body extends StatelessWidget {
             text: "SIGN UP",
             press: () {},
           ),
-          AlreadyHaveAnAccountCheck(
-            press: () {},
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                "Already Have an Accont?",
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: 15,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AppPath.loginpage);
+                },
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
           ),
           RoundedButton(
             text: "Continue as Guest",
@@ -65,7 +85,7 @@ class Body extends StatelessWidget {
               Navigator.pushNamed(context, AppPath.mainpage);
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 120,
           ),
         ],

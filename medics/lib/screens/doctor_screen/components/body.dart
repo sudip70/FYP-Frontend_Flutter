@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.02),
-            DoctorDetails(),
+            const DoctorDetails(),
             SizedBox(height: size.height * 0.02),
           ],
         ),
@@ -47,7 +47,7 @@ class DoctorDetails extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: Text(
-            "Name: \nEmail: \nPhone: \nSpecialization: ",
+            "Name: \nEmail: \nPhone: \nHospital: \nSpecialization: ",
             overflow: TextOverflow.visible,
             //textAlign: TextAlign.center,
             style: TextStyle(
@@ -57,7 +57,7 @@ class DoctorDetails extends StatelessWidget {
           ),
         ),
       ),
-      height: 120,
+      height: 135,
       width: 335,
       decoration: BoxDecoration(
         color: kTextBoxColor,
