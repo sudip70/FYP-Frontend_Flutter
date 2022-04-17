@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medics/constants.dart';
-import 'package:medics/screens/home_screen/components/covid.dart';
+import 'package:medics/screens/home_screen/components/search_result.dart';
 
 class DataSearch extends SearchDelegate<String> {
   final MedicalConditions = [
@@ -33,7 +33,7 @@ class DataSearch extends SearchDelegate<String> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-          icon: Icon(Icons.clear),
+          icon: const Icon(Icons.clear),
           onPressed: () {
             query = "";
           })
@@ -55,7 +55,7 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     //show some result based on th selection
-    return CovidScreen();
+    return const SearchScreen();
   }
 
   @override
@@ -71,16 +71,16 @@ class DataSearch extends SearchDelegate<String> {
         onTap: () {
           showResults(context);
         },
-        leading: Icon(Icons.medical_services),
+        leading: const Icon(Icons.medical_services),
         title: RichText(
           text: TextSpan(
               text: suggestionList[index].substring(0, query.length),
-              style:
-                  TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: kPrimaryColor, fontWeight: FontWeight.bold),
               children: [
                 TextSpan(
                     text: suggestionList[index].substring(query.length),
-                    style: TextStyle(color: Colors.grey))
+                    style: const TextStyle(color: Colors.grey))
               ]),
         ),
       ),

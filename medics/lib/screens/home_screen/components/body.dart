@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/constants.dart';
@@ -6,6 +5,8 @@ import 'package:medics/paths.dart';
 import 'package:medics/screens/home_screen/components/search.dart';
 
 class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +30,7 @@ class Body extends StatelessWidget {
               //width: 120,
               child: IconButton(
                 splashColor: kPrimaryColor,
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
                 color: kPrimaryColor,
                 onPressed: () {
                   showSearch(context: context, delegate: DataSearch());
@@ -111,8 +112,8 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Physical fitness is the first requisite of happiness.",
                     textAlign: TextAlign.center,
@@ -135,8 +136,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Keeping your body healthy is an expression of gratitude to the whole cosmos- the trees, the clouds, everything",
                     overflow: TextOverflow.visible,
@@ -160,8 +161,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Don't consume Alchohol, Don's Somke, Be Active.",
                     textAlign: TextAlign.center,
@@ -184,8 +185,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Get Tested, Get Vaccinated.",
                     textAlign: TextAlign.center,
@@ -208,8 +209,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Avoid ultra-processed foods, Limit sugary drinks.",
                     textAlign: TextAlign.center,
@@ -232,8 +233,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Eat plenty of fruits and vegetables, Eat adequate protein.",
                     textAlign: TextAlign.center,
@@ -256,8 +257,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Eat more vegetables and fruits. Go for color and variety - dark green, yellow, orange, and red.",
                     overflow: TextOverflow.visible,
@@ -281,8 +282,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "A daily multivitamin is a great nutrition insurance policy. Some extra vitamin D may add an extra health boost.",
                     overflow: TextOverflow.visible,
@@ -306,8 +307,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Choose foods with healthy fats, limit foods high in saturated fat, and avoid foods with trans fat. Plant oils, nuts, and fish are the healthiest sources.",
                     overflow: TextOverflow.visible,
@@ -331,8 +332,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Eating less salt is good for everyone’s health. Choose more fresh foods and fewer processed foods.",
                     overflow: TextOverflow.visible,
@@ -356,8 +357,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Base your meals on higher fibre starchy carbohydrates.",
                     overflow: TextOverflow.visible,
@@ -381,8 +382,8 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.02),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
                   child: Text(
                     "Choose leaner cuts of beef and pork, eat poultry without the skin and incorporate more fish into your diet.",
                     overflow: TextOverflow.visible,
