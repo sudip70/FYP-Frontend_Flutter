@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:medics/constants.dart';
-import 'package:medics/screens/feedback_screen/feedback_sender.dart';
+import 'package:medics/api/feedback_sender.dart';
 
 class FeedbackScreen extends StatefulWidget {
   const FeedbackScreen({Key? key}) : super(key: key);

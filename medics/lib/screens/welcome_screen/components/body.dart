@@ -48,7 +48,7 @@ class Body extends StatelessWidget {
               text: "Continue As Guest",
               color: kPrimaryColor,
               press: () {
-                Navigator.pushNamed(context, AppPath.homepage);
+                Navigator.pushNamed(context, AppPath.mainpage);
               },
             ),
           ],

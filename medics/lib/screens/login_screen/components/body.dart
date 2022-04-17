@@ -62,7 +62,7 @@ class Body extends StatelessWidget {
           RoundedButton(
             text: "Continue as Guest",
             press: () {
-              Navigator.pushNamed(context, AppPath.homepage);
+              Navigator.pushNamed(context, AppPath.mainpage);
             },
           ),
           SizedBox(

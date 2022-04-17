@@ -12,4 +12,6 @@ class AppPath {
   static String covidpage = "/covidpage";
   static String stdpage = "/stdpage";
   static String hivpage = "/hivpage";
+  static String search = "/search";
+  static String mainpage = "/mainpage";
 }

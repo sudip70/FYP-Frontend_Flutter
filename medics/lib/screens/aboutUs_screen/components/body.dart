@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medics/components/navbar.dart';
 import 'package:medics/constants.dart';
 
 class Body extends StatelessWidget {

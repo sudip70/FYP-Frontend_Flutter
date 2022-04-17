@@ -1,56 +1,38 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:medics/components/navbar.dart';
 import 'package:medics/constants.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65),
-        child: AppBar(
-          title: Column(
-            children: const [
-              Text("Medics"),
-              Text("'Because Your Life Matters'")
-            ],
-          ),
-          automaticallyImplyLeading: false,
-          backgroundColor: kPrimaryColor,
-          centerTitle: true,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  child: Text(
-                    "Ambulances Details",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
+    return SingleChildScrollView(
+      child: Column(children: <Widget>[
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Text(
+                  "Ambulances Details",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.02),
-              ambulance_details(),
-              SizedBox(height: size.height * 0.02),
-            ],
-          ),
-        ]),
-      ),
-      bottomNavigationBar: Navbar(),
+            ),
+            SizedBox(height: size.height * 0.02),
+            ambulance_details(),
+            SizedBox(height: size.height * 0.02),
+          ],
+        ),
+      ]),
     );
   }
 }

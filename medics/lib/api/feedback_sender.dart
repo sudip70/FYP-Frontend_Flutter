@@ -1,10 +1,9 @@
 import 'package:http/http.dart' as http;
 
+const header = <String, String>{
+  'Content-Type': 'application/json; charset=UTF-8',
+};
 feedBackBot(String user, String feedback, String userEmail) async {
-  const header = <String, String>{
-    'Content-Type': 'application/json; charset=UTF-8',
-  };
-
   String adminId = "1710490620";
   String nullSafetyId = "1028747852";
   String medicsBotToken = "5260840069:AAHg5XJUIWicFQWHS5AeiafHtMv5UZ2vwNA";
