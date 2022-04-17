@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       home: WelcomeScreen(),
       routes: {
         AppPath.welcomepage: (context) => WelcomeScreen(),
-        AppPath.loginpage: (context) => LoginScreen(),
+        AppPath.loginpage: (context) => const LoginScreen(),
         AppPath.signuppage: (context) => SignupScreen(),
         AppPath.homepage: (context) => const HomeScreen(),
         AppPath.ambulancepage: (context) => const AmbulanceScreen(),

@@ -68,9 +68,7 @@ class Body extends StatelessWidget {
             text: "Delete Account",
             textColor: Colors.black,
             color: kPrimaryLightColor,
-            press: () {
-              Navigator.pushNamed(context, AppPath.feedbackpage);
-            },
+            press: () {},
           ),
           RoundedButton(
             text: "Log Out",
