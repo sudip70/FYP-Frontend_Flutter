@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medics/api/loginapi.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/components/rounded_password_field.dart';
@@ -6,10 +7,26 @@ import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/login_screen/components/background.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
+  // LoginApi() {
+  //   final service = loginapi();
+
+  //   service.apiLogin(
+  //     {'email': emailController.text, 'password': passwordController.text},
+  //   ).then((value) {
+  //     print(value.access_token!);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +60,19 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.03),
           RoundedInputField(
+            controller: emailController,
             hintText: "example@gmail.com",
             onChanged: (value) {},
           ),
           RoundedPasswordField(
+            controller: passwordController,
             onChanged: (value) {},
           ),
           RoundedButton(
             text: "LOGIN",
-            press: () {},
+            press: () {
+              //LoginApi();
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

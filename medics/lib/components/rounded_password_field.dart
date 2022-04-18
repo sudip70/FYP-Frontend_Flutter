@@ -5,10 +5,12 @@ import 'package:medics/components/text_field_container.dart';
 import 'package:medics/constants.dart';
 
 class RoundedPasswordField extends StatelessWidget {
+  final TextEditingController controller;
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key? key,
     required this.onChanged,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -16,6 +18,7 @@ class RoundedPasswordField extends StatelessWidget {
     return TextFieldContainer(
       child: TextField(
         obscureText: true,
+        controller: controller,
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: "Password",

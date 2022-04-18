@@ -5,8 +5,10 @@ import 'package:medics/screens/aboutUs_screen/aboutus_screen.dart';
 import 'package:medics/screens/ambulance_screen/ambulance_screen.dart';
 import 'package:medics/screens/doctor_screen/doctor_screen.dart';
 import 'package:medics/screens/feedback_screen/feedback_screen.dart';
+import 'package:medics/screens/home_screen/components/blood_requests.dart';
 import 'package:medics/screens/home_screen/components/covid.dart';
 import 'package:medics/screens/home_screen/components/hiv.dart';
+import 'package:medics/screens/home_screen/components/post_request.dart';
 //import 'package:medics/screens/home_screen/components/search.dart';
 import 'package:medics/screens/home_screen/components/std.dart';
 import 'package:medics/screens/home_screen/home_screen.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppPath.welcomepage: (context) => WelcomeScreen(),
         AppPath.loginpage: (context) => const LoginScreen(),
-        AppPath.signuppage: (context) => SignupScreen(),
+        AppPath.signuppage: (context) => const SignupScreen(),
         AppPath.homepage: (context) => const HomeScreen(),
         AppPath.ambulancepage: (context) => const AmbulanceScreen(),
         AppPath.doctorpage: (context) => const DoctorScreen(),
@@ -48,7 +50,9 @@ class MyApp extends StatelessWidget {
         AppPath.covidpage: (context) => const CovidScreen(),
         AppPath.stdpage: (context) => const STDScreen(),
         AppPath.hivpage: (context) => const HIVScreen(),
-        AppPath.mainpage: (context) => const ButtomNav()
+        AppPath.mainpage: (context) => const ButtomNav(),
+        AppPath.bloodreqpage: (context) => const BloodRequestcreen(),
+        AppPath.postreqpage: (context) => const PostRequestScreen()
         //AppPath.search: (context) => DataSearch()
       },
     );

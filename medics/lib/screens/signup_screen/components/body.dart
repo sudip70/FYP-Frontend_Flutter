@@ -6,7 +6,17 @@ import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/signup_screen/components/background.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,15 +49,18 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.03),
           RoundedInputField(
+              controller: nameController,
               hintText: "Your Full Name",
               onChanged: (value) {},
               icon: Icons.person),
           RoundedInputField(
+            controller: emailController,
             hintText: "example@gmail.com",
             onChanged: (value) {},
             icon: Icons.email,
           ),
           RoundedPasswordField(
+            controller: passwordController,
             onChanged: (value) {},
           ),
           RoundedButton(

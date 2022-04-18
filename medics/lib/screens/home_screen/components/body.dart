@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medics/components/rounded_input_field.dart';
+import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/home_screen/components/search.dart';
@@ -14,25 +14,15 @@ class Body extends StatelessWidget {
       child: Column(children: <Widget>[
         Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: SizedBox(
-                width: 300,
-                child: RoundedInputField(
-                  icon: Icons.chevron_right,
-                  hintText: "Enter Medical Condition",
-                  onChanged: (value) {},
-                ),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20, top: 130),
             ),
             SizedBox(
               //decoration: ,
               //width: 120,
-              child: IconButton(
-                splashColor: kPrimaryColor,
-                icon: const Icon(Icons.search),
-                color: kPrimaryColor,
-                onPressed: () {
+              child: RoundedButton(
+                text: "Search Disease",
+                press: () {
                   showSearch(context: context, delegate: DataSearch());
                 },
               ),
@@ -40,7 +30,8 @@ class Body extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          padding:
+              const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -105,6 +96,36 @@ class Body extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 15, right: 20),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: SizedBox(
+                //decoration: ,
+                width: 170,
+                child: RoundedButton(
+                  text: "Blood Requests",
+                  press: () {
+                    Navigator.pushNamed(context, AppPath.bloodreqpage);
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 170,
+              child: RoundedButton(
+                color: const Color.fromARGB(233, 166, 30, 30),
+                text: "Post Request",
+                press: () {
+                  Navigator.pushNamed(context, AppPath.postreqpage);
+                },
+              ),
+            )
+          ],
         ),
         SizedBox(height: size.height * 0.015),
         Padding(
