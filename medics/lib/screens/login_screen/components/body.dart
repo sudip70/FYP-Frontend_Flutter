@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medics/api/loginapi.dart';
+import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/components/rounded_password_field.dart';
@@ -17,16 +18,6 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-
-  // LoginApi() {
-  //   final service = loginapi();
-
-  //   service.apiLogin(
-  //     {'email': emailController.text, 'password': passwordController.text},
-  //   ).then((value) {
-  //     print(value.access_token!);
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +61,26 @@ class _BodyState extends State<Body> {
           ),
           RoundedButton(
             text: "LOGIN",
-            press: () {
-              //LoginApi();
+            press: () async {
+              var loginResponse = await postlogin(
+                  emailController.text, passwordController.text);
+              print(loginResponse.runtimeType);
+              print(loginResponse);
+              if (loginResponse["success"] == "false") {
+                String msg = loginResponse["msg"];
+                var alertDialog = AlertDialog(
+                  title: const Text("Login Error!!!"),
+                  content: Text(msg),
+                );
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alertDialog;
+                    });
+              } else {
+                storeToken(loginResponse["access_token"]);
+                Navigator.pushNamed(context, AppPath.mainpage);
+              }
             },
           ),
           Row(

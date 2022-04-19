@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/navigation.dart';
+import 'package:medics/components/session_controller.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/aboutUs_screen/aboutus_screen.dart';
+import 'package:medics/screens/ambulance_screen/ambulance_UI.dart';
 import 'package:medics/screens/ambulance_screen/ambulance_screen.dart';
 import 'package:medics/screens/doctor_screen/doctor_screen.dart';
 import 'package:medics/screens/feedback_screen/feedback_screen.dart';
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: const Controller(),
       routes: {
         AppPath.welcomepage: (context) => WelcomeScreen(),
         AppPath.loginpage: (context) => const LoginScreen(),
@@ -52,7 +55,8 @@ class MyApp extends StatelessWidget {
         AppPath.hivpage: (context) => const HIVScreen(),
         AppPath.mainpage: (context) => const ButtomNav(),
         AppPath.bloodreqpage: (context) => const BloodRequestcreen(),
-        AppPath.postreqpage: (context) => const PostRequestScreen()
+        AppPath.postreqpage: (context) => const PostRequestScreen(),
+        // AppPath.ambulanceUI: (context) => const AmbulanceUI(info: info)
         //AppPath.search: (context) => DataSearch()
       },
     );

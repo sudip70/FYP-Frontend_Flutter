@@ -1,53 +1,54 @@
 class AmbulanceInfo {
-  List<AmbulanceInfo>? ambulance;
-  String? msg;
-  String? succes;
-
-  AmbulanceInfo({this.ambulance, this.msg, this.succes});
+  AmbulanceInfo({
+    required this.ambulance,
+    required this.msg,
+    required this.success,
+  });
+  late final List<Ambulance> ambulance;
+  late final String msg;
+  late final String success;
 
   AmbulanceInfo.fromJson(Map<String, dynamic> json) {
-    if (json['ambulance'] != null) {
-      ambulance = <AmbulanceInfo>[];
-      json['ambulance'].forEach((v) {
-        ambulance?.add(new AmbulanceInfo.fromJson(v));
-      });
-    }
+    ambulance =
+        List.from(json['ambulance']).map((e) => Ambulance.fromJson(e)).toList();
     msg = json['msg'];
-    succes = json['succes'];
+    success = json['success'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.ambulance != null) {
-      data['ambulance'] = this.ambulance!.map((v) => v.toJson()).toList();
-    }
-    data['msg'] = this.msg;
-    data['succes'] = this.succes;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['ambulance'] = ambulance.map((e) => e.toJson()).toList();
+    _data['msg'] = msg;
+    _data['success'] = success;
+    return _data;
   }
 }
 
 class Ambulance {
-  String? address;
-  String? ambId;
-  String? orgName;
-  String? phone;
-
-  Ambulance({this.address, this.ambId, this.orgName, this.phone});
+  Ambulance({
+    required this.address,
+    required this.ambId,
+    required this.organizaionName,
+    required this.phone,
+  });
+  late final String address;
+  late final String ambId;
+  late final String organizaionName;
+  late final String phone;
 
   Ambulance.fromJson(Map<String, dynamic> json) {
     address = json['address'];
     ambId = json['amb_id'];
-    orgName = json['org_name'];
+    organizaionName = json['organizaion_name'];
     phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['address'] = this.address;
-    data['amb_id'] = this.ambId;
-    data['org_name'] = this.orgName;
-    data['phone'] = this.phone;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['address'] = address;
+    _data['amb_id'] = ambId;
+    _data['organizaion_name'] = organizaionName;
+    _data['phone'] = phone;
+    return _data;
   }
 }

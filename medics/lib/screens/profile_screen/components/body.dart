@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
@@ -68,13 +70,21 @@ class Body extends StatelessWidget {
             text: "Delete Account",
             textColor: Colors.black,
             color: kPrimaryLightColor,
-            press: () {},
+            press: () async {
+              // FlutterSecureStorage? cache =  FlutterSecureStorage();
+              await deleteUser();
+              //print("hari solti gone now");
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppPath.welcomepage, (route) => false);
+            },
           ),
           RoundedButton(
             text: "Log Out",
             textColor: Colors.black,
             color: kPrimaryLightColor,
-            press: () {
+            press: () async {
+              FlutterSecureStorage? cache = FlutterSecureStorage();
+              await cache.deleteAll();
               Navigator.pushNamed(context, AppPath.welcomepage);
             },
           ),

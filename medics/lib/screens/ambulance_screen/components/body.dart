@@ -1,9 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:medics/api/medics_api.dart';
+import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
+import 'package:medics/models/ambulance.dart';
+import 'package:medics/screens/ambulance_screen/ambulance_UI.dart';
 
-class Body extends StatelessWidget {
+class AmbulancePage extends StatefulWidget {
+  const AmbulancePage({Key? key}) : super(key: key);
+
+  @override
+  State<AmbulancePage> createState() => _AmbulancePageState();
+}
+
+class _AmbulancePageState extends State<AmbulancePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +39,19 @@ class Body extends StatelessWidget {
               ),
             ),
             SizedBox(height: size.height * 0.02),
-            ambulance_details(),
+            RoundedButton(
+                text: "Get Ambulance Details",
+                press: () async {
+                  AmbulanceInfo ambulanceInfo = await getambulanceDetails();
+                  print(ambulanceInfo.ambulance.length.toString());
+                  List<Ambulance> info = ambulanceInfo.ambulance;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AmbulanceUI(info: info)),
+                  );
+                  //Container
+                }),
             SizedBox(height: size.height * 0.02),
           ],
         ),
@@ -37,38 +60,47 @@ class Body extends StatelessWidget {
   }
 }
 
-class ambulance_details extends StatelessWidget {
-  const ambulance_details({
+class AmbulanceDetails extends StatelessWidget {
+  final String? orgName;
+  final String? address;
+  final String? phone;
+  const AmbulanceDetails({
     Key? key,
+    required this.orgName,
+    required this.address,
+    required this.phone,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: Container(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Text(
-            "Organization Name: \nAddress: \nPhone:",
-            overflow: TextOverflow.visible,
-            //textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(
+              "Organization Name: $orgName \nAddress: $address \nPhone: $phone",
+              overflow: TextOverflow.visible,
+              //textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
           ),
         ),
-      ),
-      height: 100,
-      width: 335,
-      decoration: BoxDecoration(
-        color: kTextBoxColor,
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
+        height: 130,
+        width: 335,
+        decoration: BoxDecoration(
+          color: kTextBoxColor,
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(12),
         ),
-        borderRadius: BorderRadius.circular(12),
       ),
     );
   }
