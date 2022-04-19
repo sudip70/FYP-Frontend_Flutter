@@ -71,9 +71,7 @@ class Body extends StatelessWidget {
             textColor: Colors.black,
             color: kPrimaryLightColor,
             press: () async {
-              // FlutterSecureStorage? cache =  FlutterSecureStorage();
               await deleteUser();
-              //print("hari solti gone now");
               Navigator.pushNamedAndRemoveUntil(
                   context, AppPath.welcomepage, (route) => false);
             },

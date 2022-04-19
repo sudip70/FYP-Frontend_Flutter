@@ -12,7 +12,6 @@ import 'package:medics/screens/home_screen/components/blood_requests.dart';
 import 'package:medics/screens/home_screen/components/covid.dart';
 import 'package:medics/screens/home_screen/components/hiv.dart';
 import 'package:medics/screens/home_screen/components/post_request.dart';
-//import 'package:medics/screens/home_screen/components/search.dart';
 import 'package:medics/screens/home_screen/components/std.dart';
 import 'package:medics/screens/home_screen/home_screen.dart';
 import 'package:medics/screens/hospital_screen/hospital_screen.dart';
@@ -21,7 +20,6 @@ import 'package:medics/constants.dart';
 import 'package:medics/screens/profile_screen/profile_screen.dart';
 import 'package:medics/screens/signup_screen/signup_screen.dart';
 import 'package:medics/screens/welcome_screen/welcome_screen.dart';
-//import 'package:medics/screens/home_screen/components/search.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,8 +30,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Medics',
-      //themeMode: ThemeMode.system,
-
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medics/api/loginapi.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
