@@ -39,7 +39,7 @@ class Bloodreq {
   late final int bloodId;
 
   Bloodreq.fromJson(Map<String, dynamic> json) {
-    Blood_Group = json['Blood Group'];
+    Blood_Group = json['Blood_Group'];
     Location = json['Location'];
     Name = json['Name'];
     Phone = json['Phone'];
@@ -48,7 +48,7 @@ class Bloodreq {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['Blood Group'] = Blood_Group;
+    _data['Blood_Group'] = Blood_Group;
     _data['Location'] = Location;
     _data['Name'] = Name;
     _data['Phone'] = Phone;

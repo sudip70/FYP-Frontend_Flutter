@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         AppPath.stdpage: (context) => const STDScreen(),
         AppPath.hivpage: (context) => const HIVScreen(),
         AppPath.mainpage: (context) => const ButtomNav(),
-        AppPath.bloodreqpage: (context) => const BloodRequestcreen(),
+        //AppPath.bloodreqpage: (context) =>  BloodRequestScreen(info: [],),
         AppPath.postreqpage: (context) => const PostRequestScreen(),
         // AppPath.ambulanceUI: (context) => const AmbulanceUI(info: info)
         //AppPath.search: (context) => DataSearch()

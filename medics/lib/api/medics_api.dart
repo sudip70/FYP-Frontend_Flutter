@@ -25,6 +25,7 @@ const String bloodreqURL = "$backendIP/bloodreq/";
 const String postreqURL = "$backendIP/postreq/";
 const String recommendURL = "$backendIP/medconlist/";
 const String deleteURL = "$backendIP/account_del/";
+const String getMedConditionURL = "$backendIP/med_condition/?con=";
 
 Future postlogin(String email, String password) async {
   var requestBody =
@@ -90,6 +91,27 @@ Future getbloodreqDetails() async {
   return BloodReqInfo.fromJson(resp);
 }
 
+Future postReq(
+    String name, String phone, String location, String blood_group) async {
+  FlutterSecureStorage? cF = const FlutterSecureStorage();
+  String? at = await cF.read(key: 'token');
+  dynamic authHeader = <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Authorization': 'Bearer $at',
+  };
+  var requestBody = jsonEncode(<String, String>{
+    "name": name,
+    "phone": phone,
+    "location": location,
+    "blood_group": blood_group
+  });
+  final response = await http.post(Uri.parse(postreqURL),
+      headers: authHeader, body: requestBody);
+
+  var resp = json.decode(response.body);
+  return resp;
+}
+
 tokenAvailable() async {
   FlutterSecureStorage? cacheFile = const FlutterSecureStorage();
   String? savedToken = await cacheFile.read(key: 'token');
@@ -105,6 +127,15 @@ Future getrecommendation() async {
 
   var resp = json.decode(response.body);
   return Medconlist.fromJson(resp);
+}
+
+Future getMedCondition(String con) async {
+  final response =
+      await http.get(Uri.parse("$getMedConditionURL$con"), headers: header);
+  var resp = json.decode(response.body);
+
+  print(resp.toString());
+  return resp;
 }
 
 Future deleteUser() async {

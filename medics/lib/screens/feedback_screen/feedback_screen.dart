@@ -24,6 +24,18 @@ void emptyField(BuildContext context) {
       });
 }
 
+void feedbackSuccess(BuildContext context) {
+  var alertDialog = AlertDialog(
+    title: Text("Feedback Success!!!"),
+    content: Text("Your feedback has been sent succesfully. \nThank You!"),
+  );
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alertDialog;
+      });
+}
+
 class _FeedbackScreenState extends State<FeedbackScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -102,6 +114,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           (feedbackController.text != '')) {
                         feedBackBot(nameController.text,
                             feedbackController.text, emailController.text);
+                        feedbackSuccess(context);
                       } else {
                         emptyField(context);
                       }

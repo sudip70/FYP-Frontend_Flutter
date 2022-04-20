@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/constants.dart';
@@ -80,7 +81,37 @@ class _PostRequestScreenState extends State<PostRequestScreen> {
               RoundedButton(
                 color: const Color.fromARGB(233, 166, 30, 30),
                 text: "Post Blood Request",
-                press: () {},
+                press: () async {
+                  var postResponse = await postReq(
+                      nameController.text,
+                      phoneController.text,
+                      locationController.text,
+                      bloodgroupController.text);
+                  if (postResponse["success"] == "false") {
+                    String msg = postResponse["msg"];
+                    var alertDialog = AlertDialog(
+                      title: const Text("Invalid Input!!!"),
+                      content: Text(msg),
+                    );
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return alertDialog;
+                        });
+                  } else if (postResponse["success"] == "true") {
+                    String msg = postResponse["msg"];
+                    var alertDialog = AlertDialog(
+                      title: const Text("Success!!!"),
+                      content: Text(msg),
+                    );
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return alertDialog;
+                        });
+                    //Navigator.pushNamed(context, AppPath.mainpage);
+                  }
+                },
               ),
             ],
           ),

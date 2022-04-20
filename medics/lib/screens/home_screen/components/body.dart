@@ -1,17 +1,36 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
+import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/constants.dart';
+import 'package:medics/models/bloodreq.dart';
 import 'package:medics/models/medconlist.dart';
 import 'package:medics/paths.dart';
+import 'package:medics/screens/home_screen/components/blood_requests.dart';
 import 'package:medics/screens/home_screen/components/search.dart';
 
 class Body extends StatelessWidget {
+  //List<Bloodreq> info;
   const Body({Key? key}) : super(key: key);
+
+  void emptyField(BuildContext context) {
+    var alertDialog = const AlertDialog(
+      title: Text("Unauthorized User!!"),
+      content: Text(
+          "You can not post blood request without registering. \nPlease register to post blood requests. Thank You!!"),
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController searchController = TextEditingController();
     return Material(
       child: SingleChildScrollView(
         child: Column(children: <Widget>[
@@ -20,23 +39,48 @@ class Body extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 130),
               ),
-              SizedBox(
-                //decoration: ,
-                //width: 120,
-                child: RoundedButton(
-                  text: "Search Disease",
-                  press: () async {
-                    Medcondition conds = await getrecommendation();
-                    print(conds.medconlist.length.toString());
-                    List<Medconlist> info = conds.medconlist;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyHomePage(meds: info)),
-                    );
-                  },
-                ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 300,
+                    child: RoundedInputField(
+                        icon: CupertinoIcons.back,
+                        hintText: "Enter condition",
+                        controller: searchController,
+                        onChanged: (value) {}),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        if (searchController.text != null) {
+                          print("i am here");
+                          var searchedItem =
+                              await getMedCondition(searchController.text);
+                        }
+                      },
+                      icon: Icon(Icons.search))
+                ],
               ),
+              // SizedBox(
+              //   //decoration: ,
+              //   //width: 120,
+              //   child: RoundedButton(
+              //     text: "Search Disease",
+              //     press: () async {
+              //       //showSearch(context: context, delegate: DataSearch());
+              //       // Medcondition conds = await getrecommendation();
+              //       // print(conds.medconlist.length.toString());
+              //       // List<Medconlist> info = conds.medconlist;
+              //       // Navigator.push(
+              //       //   context,
+              //       //   MaterialPageRoute(
+              //       //       builder: (context) => MyHomePage(meds: info)),
+              //       //);
+              //     },
+              //   ),
+              // ),
             ],
           ),
           Padding(
@@ -119,8 +163,16 @@ class Body extends StatelessWidget {
                   width: 170,
                   child: RoundedButton(
                     text: "Blood Requests",
-                    press: () {
-                      Navigator.pushNamed(context, AppPath.bloodreqpage);
+                    press: () async {
+                      BloodReqInfo bloodReqInfo = await getbloodreqDetails();
+                      //print(bloodReqInfo.bloodreq.length.toString());
+                      List<Bloodreq> info = bloodReqInfo.bloodreq;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                BloodRequestScreen(info: info)),
+                      );
                     },
                   ),
                 ),
@@ -130,8 +182,15 @@ class Body extends StatelessWidget {
                 child: RoundedButton(
                   color: const Color.fromARGB(233, 166, 30, 30),
                   text: "Post Request",
-                  press: () {
-                    Navigator.pushNamed(context, AppPath.postreqpage);
+                  press: () async {
+                    bool appState = await tokenAvailable();
+                    if (appState) {
+                      Navigator.pushNamed(context, AppPath.postreqpage);
+                    } else {
+                      emptyField(context);
+                    }
+
+                    // Navigator.pushNamed(context, AppPath.postreqpage);
                   },
                 ),
               )
