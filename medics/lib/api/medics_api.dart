@@ -11,7 +11,7 @@ import 'package:medics/models/hospitals.dart';
 import 'package:medics/models/medconlist.dart';
 import 'package:medics/models/std.dart';
 
-const String backendIP = "http://192.168.18.9";
+const String backendIP = "https://1bab-110-44-117-187.in.ngrok.io";
 
 const String signupURL = "$backendIP/signup/";
 const String loginURL = "$backendIP/login/";
