@@ -8,10 +8,9 @@ import 'package:medics/models/bloodreq.dart';
 import 'package:medics/models/medconlist.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/home_screen/components/blood_requests.dart';
-import 'package:medics/screens/home_screen/components/search.dart';
+import 'package:medics/screens/home_screen/components/search_result.dart';
 
 class Body extends StatelessWidget {
-  //List<Bloodreq> info;
   const Body({Key? key}) : super(key: key);
 
   void emptyField(BuildContext context) {
@@ -53,14 +52,21 @@ class Body extends StatelessWidget {
                     width: 8,
                   ),
                   IconButton(
-                      onPressed: () async {
-                        if (searchController.text != null) {
-                          print("i am here");
-                          var searchedItem =
-                              await getMedCondition(searchController.text);
-                        }
-                      },
-                      icon: Icon(Icons.search))
+                    color: kPrimaryColor,
+                    onPressed: () async {
+                      Medcondition medConlist =
+                          await getMedCondition(searchController.text);
+                      List<MedCondition> info = medConlist.medCondition;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                SearchResultScreen(info: info)),
+                      );
+                    },
+                    icon: const Icon(Icons.search),
+                    splashColor: kPrimaryColor,
+                  )
                 ],
               ),
               // SizedBox(
@@ -254,7 +260,7 @@ class Body extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 15),
                     child: Text(
-                      "Don't consume Alchohol, Don's Somke, Be Active.",
+                      "Don't consume Alchohol, Don's Smoke, Be Active.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

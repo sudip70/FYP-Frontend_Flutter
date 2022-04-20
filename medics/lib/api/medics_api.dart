@@ -11,7 +11,7 @@ import 'package:medics/models/hospitals.dart';
 import 'package:medics/models/medconlist.dart';
 import 'package:medics/models/std.dart';
 
-const String backendIP = "https://1bab-110-44-117-187.in.ngrok.io";
+const String backendIP = "http://192.168.18.9";
 
 const String signupURL = "$backendIP/signup/";
 const String loginURL = "$backendIP/login/";
@@ -32,6 +32,22 @@ Future postlogin(String email, String password) async {
       jsonEncode(<String, String>{"email": email, "password": password});
   final response =
       await http.post(Uri.parse(loginURL), headers: header, body: requestBody);
+
+  var resp = json.decode(response.body);
+  return resp;
+}
+
+Future signUp(String name, String email, String password) async {
+  FlutterSecureStorage? cF = const FlutterSecureStorage();
+  String? at = await cF.read(key: 'token');
+  dynamic authHeader = <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Authorization': 'Bearer $at',
+  };
+  var requestBody = jsonEncode(
+      <String, String>{"name": name, "email": email, "password": password});
+  final response = await http.post(Uri.parse(signupURL),
+      headers: authHeader, body: requestBody);
 
   var resp = json.decode(response.body);
   return resp;
@@ -126,14 +142,13 @@ Future getrecommendation() async {
   final response = await http.get(Uri.parse(recommendURL), headers: header);
 
   var resp = json.decode(response.body);
-  return Medconlist.fromJson(resp);
+  return MedCondition.fromJson(resp);
 }
 
 Future getMedCondition(String con) async {
   final response =
       await http.get(Uri.parse("$getMedConditionURL$con"), headers: header);
   var resp = json.decode(response.body);
-
   print(resp.toString());
   return resp;
 }

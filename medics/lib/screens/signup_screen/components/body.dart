@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/components/rounded_password_field.dart';
@@ -17,6 +18,7 @@ class _BodyState extends State<Body> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -64,9 +66,36 @@ class _BodyState extends State<Body> {
             onChanged: (value) {},
           ),
           RoundedButton(
-            text: "SIGN UP",
-            press: () {},
-          ),
+              text: "SIGN UP",
+              press: () async {
+                var signupResponse = await signUp(nameController.text,
+                    emailController.text, passwordController.text);
+                if (signupResponse["success"] == "false") {
+                  String msg = signupResponse["msg"];
+                  var alertDialog = AlertDialog(
+                    title: const Text("Invalid Input!!!"),
+                    content: Text(msg),
+                  );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alertDialog;
+                      });
+                } else if (signupResponse["success"] == "true") {
+                  String msg = signupResponse["msg"];
+                  var alertDialog = AlertDialog(
+                    title: const Text("Success!!!"),
+                    content: Text(msg),
+                  );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alertDialog;
+                      });
+                  // Navigator.pushNamedAndRemoveUntil(
+                  //     context, AppPath.loginpage, (route) => false);
+                }
+              }),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

@@ -35,6 +35,17 @@ class AmbulanceUI extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 30, bottom: 20),
+                  child: Text(
+                    "Ambulance Details",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
                 for (int i = 0; i < info.length; i++)
                   AmbulanceDetails(
                       orgName: info[i].organizaionName,

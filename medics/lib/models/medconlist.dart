@@ -1,18 +1,16 @@
-// ignore_for_file: non_constant_identifier_names
-
 class Medcondition {
   Medcondition({
-    required this.medconlist,
+    required this.medCondition,
     required this.msg,
     required this.succes,
   });
-  late final List<Medconlist> medconlist;
+  late final List<MedCondition> medCondition;
   late final String msg;
   late final String succes;
 
   Medcondition.fromJson(Map<String, dynamic> json) {
-    medconlist = List.from(json['medconlist'])
-        .map((e) => Medconlist.fromJson(e))
+    medCondition = List.from(json['med_condition'])
+        .map((e) => MedCondition.fromJson(e))
         .toList();
     msg = json['msg'];
     succes = json['succes'];
@@ -20,42 +18,42 @@ class Medcondition {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['medconlist'] = medconlist.map((e) => e.toJson()).toList();
+    _data['med_condition'] = medCondition.map((e) => e.toJson()).toList();
     _data['msg'] = msg;
     _data['succes'] = succes;
     return _data;
   }
 }
 
-class Medconlist {
-  Medconlist({
-    required this.Cure,
-    required this.Description,
-    required this.Name,
-    required this.Symptoms,
+class MedCondition {
+  MedCondition({
+    required this.cure,
+    required this.description,
     required this.medId,
+    required this.name,
+    required this.symptoms,
   });
-  late final String Cure;
-  late final String Description;
-  late final String Name;
-  late final String Symptoms;
+  late final String cure;
+  late final String description;
   late final String medId;
+  late final String name;
+  late final String symptoms;
 
-  Medconlist.fromJson(Map<String, dynamic> json) {
-    Cure = json['Cure'];
-    Description = json['Description'];
-    Name = json['Name'];
-    Symptoms = json['Symptoms'];
+  MedCondition.fromJson(Map<String, dynamic> json) {
+    cure = json['cure'];
+    description = json['description'];
     medId = json['med_id'];
+    name = json['name'];
+    symptoms = json['symptoms'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['Cure'] = Cure;
-    _data['Description'] = Description;
-    _data['Name'] = Name;
-    _data['Symptoms'] = Symptoms;
+    _data['cure'] = cure;
+    _data['description'] = description;
     _data['med_id'] = medId;
+    _data['name'] = name;
+    _data['symptoms'] = symptoms;
     return _data;
   }
 }

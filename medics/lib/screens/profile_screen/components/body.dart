@@ -8,6 +8,18 @@ import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 
 class Body extends StatelessWidget {
+  void emptyField(BuildContext context) {
+    var alertDialog = const AlertDialog(
+      title: Text("No User Details!!"),
+      content: Text("You are not registered to the system."),
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -71,9 +83,25 @@ class Body extends StatelessWidget {
             textColor: Colors.black,
             color: kPrimaryLightColor,
             press: () async {
-              await deleteUser();
-              Navigator.pushNamedAndRemoveUntil(
-                  context, AppPath.welcomepage, (route) => false);
+              bool appState = await tokenAvailable();
+              if (appState) {
+                var delResponse = await deleteUser();
+                //if (delResponse["success"] == "true") {
+                String msg = delResponse["msg"];
+                var alertDialog = AlertDialog(
+                  title: const Text("Login Error!!!"),
+                  content: Text(msg),
+                );
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alertDialog;
+                    });
+                Navigator.pushNamedAndRemoveUntil(
+                    context, AppPath.welcomepage, (route) => false);
+              } else {
+                emptyField(context);
+              }
             },
           ),
           RoundedButton(
