@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
           Row(
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 130),
+                padding: EdgeInsets.only(left: 10, right: 20, top: 130),
               ),
               Row(
                 children: [
