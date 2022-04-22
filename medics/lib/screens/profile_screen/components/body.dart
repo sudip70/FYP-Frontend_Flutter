@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
@@ -26,11 +25,10 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(
-              top: 80,
+              top: 130,
               left: 120,
               right: 120,
               bottom: 10,
@@ -53,7 +51,7 @@ class Body extends StatelessWidget {
                         return alertDialog;
                       });
                 } catch (e) {
-                  var alertDialog = AlertDialog(
+                  var alertDialog = const AlertDialog(
                     title: Text("Guest"),
                   );
                   showDialog(
@@ -65,20 +63,17 @@ class Body extends StatelessWidget {
               },
               child: Container(
                 child: Image.asset(
-                  "lib/assets/images/Profile.png",
-                  //width: size.width * 0.35,
+                  "lib/assets/images/profile2.gif",
+                  width: size.width * 0.50,
                 ),
                 decoration: BoxDecoration(
                   color: kTextBoxColor,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1,
-                  ),
                   borderRadius: BorderRadius.circular(100),
                 ),
               ),
             ),
           ),
+          //IconButton(onPressed: () {}, icon: Icon(Icons.visibility)),
           SizedBox(height: size.height * 0.03),
           RoundedButton(
             text: "Feedback",
@@ -108,20 +103,29 @@ class Body extends StatelessWidget {
             press: () async {
               bool appState = await tokenAvailable();
               if (appState) {
-                var delResponse = await deleteUser();
-                //if (delResponse["success"] == "true") {
-                String msg = delResponse["msg"];
-                var alertDialog = AlertDialog(
-                  title: const Text("Login Error!!!"),
-                  content: Text(msg),
-                );
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return alertDialog;
-                    });
-                Navigator.pushNamedAndRemoveUntil(
-                    context, AppPath.welcomepage, (route) => false);
+                try {
+                  var delResponse = await deleteUser();
+                  Fluttertoast.showToast(
+                      msg: "User account deleted successfully!!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: kPrimaryLightColor,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppPath.welcomepage, (route) => false);
+                } catch (e) {
+                  Fluttertoast.showToast(
+                      msg:
+                          "Network Error. Please Check your internet connection.",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: kPrimaryLightColor,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
+                }
               } else {
                 emptyField(context);
               }
@@ -132,7 +136,7 @@ class Body extends StatelessWidget {
             textColor: Colors.black,
             color: kPrimaryLightColor,
             press: () async {
-              FlutterSecureStorage? cache = FlutterSecureStorage();
+              FlutterSecureStorage? cache = const FlutterSecureStorage();
               await cache.deleteAll();
               Navigator.pushNamed(context, AppPath.welcomepage);
             },

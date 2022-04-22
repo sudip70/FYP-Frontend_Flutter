@@ -69,40 +69,42 @@ class _BodyState extends State<Body> {
           RoundedButton(
               text: "SIGN UP",
               press: () async {
-                var signupResponse = await signUp(nameController.text,
-                    emailController.text, passwordController.text);
-                if (signupResponse["success"] == "false") {
-                  String msg = signupResponse["msg"];
-                  var alertDialog = AlertDialog(
-                    title: const Text("Invalid Input!!!"),
-                    content: Text(msg),
-                  );
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return alertDialog;
-                      });
-                } else if (signupResponse["success"] == "true") {
+                try {
+                  var signupResponse = await signUp(nameController.text,
+                      emailController.text, passwordController.text);
+                  if (signupResponse["success"] == "false") {
+                    String msg = signupResponse["msg"];
+                    var alertDialog = AlertDialog(
+                      title: const Text("Invalid Input!!!"),
+                      content: Text(msg),
+                    );
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return alertDialog;
+                        });
+                  } else if (signupResponse["success"] == "true") {
+                    Fluttertoast.showToast(
+                        msg: "Signed Up Successfully!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: kPrimaryLightColor,
+                        textColor: Colors.black,
+                        fontSize: 16.0);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppPath.loginpage, (route) => false);
+                  }
+                } catch (e) {
                   Fluttertoast.showToast(
-                      msg: "Signed Up Successfully!",
+                      msg:
+                          "Network Error. Please Check your internet connection.",
                       toastLength: Toast.LENGTH_SHORT,
                       gravity: ToastGravity.BOTTOM,
                       timeInSecForIosWeb: 1,
                       backgroundColor: kPrimaryLightColor,
                       textColor: Colors.black,
                       fontSize: 16.0);
-                  // String msg = signupResponse["msg"];
-                  // var alertDialog = AlertDialog(
-                  //   title: const Text("Success!!!"),
-                  //   content: Text(msg),
-                  // );
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) {
-                  //       return alertDialog;
-                  //     });
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, AppPath.loginpage, (route) => false);
                 }
               }),
           Row(

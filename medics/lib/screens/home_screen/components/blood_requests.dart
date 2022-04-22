@@ -35,7 +35,7 @@ class _BloodRequestScreenState extends State<BloodRequestScreen> {
             Container(
               alignment: Alignment.center,
               child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: EdgeInsets.only(top: 30),
                 child: Text(
                   "Blood Requests",
                   textAlign: TextAlign.center,
@@ -56,7 +56,6 @@ class _BloodRequestScreenState extends State<BloodRequestScreen> {
             const SizedBox(
               height: 30,
             )
-            //SizedBox(height: size.height * 0.02),
           ],
         ),
       ),
@@ -100,7 +99,7 @@ class BloodRequests extends StatelessWidget {
         height: 125,
         width: 335,
         decoration: BoxDecoration(
-          color: kTextBoxColor,
+          color: kPrimaryLightColor,
           border: Border.all(
             color: Colors.black,
             width: 1,

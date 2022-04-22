@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
@@ -61,22 +62,34 @@ class _BodyState extends State<Body> {
           RoundedButton(
             text: "LOGIN",
             press: () async {
-              var loginResponse = await postlogin(
-                  emailController.text, passwordController.text);
-              if (loginResponse["success"] == "false") {
-                String msg = loginResponse["msg"];
-                var alertDialog = AlertDialog(
-                  title: const Text("Login Error!!!"),
-                  content: Text(msg),
-                );
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return alertDialog;
-                    });
-              } else {
-                storeToken(loginResponse["access_token"]);
-                Navigator.pushNamed(context, AppPath.mainpage);
+              try {
+                var loginResponse = await postlogin(
+                    emailController.text, passwordController.text);
+                if (loginResponse["success"] == "false") {
+                  String msg = loginResponse["msg"];
+                  var alertDialog = AlertDialog(
+                    title: const Text("Login Error!!!"),
+                    content: Text(msg),
+                  );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alertDialog;
+                      });
+                } else {
+                  storeToken(loginResponse["access_token"]);
+                  Navigator.pushNamed(context, AppPath.mainpage);
+                }
+              } catch (e) {
+                Fluttertoast.showToast(
+                    msg:
+                        "Network Error. Please Check your internet connection.",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: kPrimaryLightColor,
+                    textColor: Colors.black,
+                    fontSize: 16.0);
               }
             },
           ),

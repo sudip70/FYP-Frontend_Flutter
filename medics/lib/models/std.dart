@@ -25,33 +25,33 @@ class StdInfo {
 
 class Std {
   Std({
-    required this.Cure,
-    required this.Description,
-    required this.Name,
-    required this.Symptoms,
+    required this.cure,
+    required this.description,
     required this.medId,
+    required this.name,
+    required this.symptoms,
   });
-  late final String Cure;
-  late final String Description;
-  late final String Name;
-  late final String Symptoms;
+  late final String cure;
+  late final String description;
   late final String medId;
+  late final String name;
+  late final String symptoms;
 
   Std.fromJson(Map<String, dynamic> json) {
-    Cure = json['Cure'];
-    Description = json['Description'];
-    Name = json['Name'];
-    Symptoms = json['Symptoms'];
+    cure = json['cure'];
+    description = json['description'];
     medId = json['med_id'];
+    name = json['name'];
+    symptoms = json['symptoms'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['Cure'] = Cure;
-    _data['Description'] = Description;
-    _data['Name'] = Name;
-    _data['Symptoms'] = Symptoms;
+    _data['cure'] = cure;
+    _data['description'] = description;
     _data['med_id'] = medId;
+    _data['name'] = name;
+    _data['symptoms'] = symptoms;
     return _data;
   }
 }

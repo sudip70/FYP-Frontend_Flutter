@@ -43,11 +43,11 @@ class Body extends StatelessWidget {
                 SizedBox(height: size.height * 0.03),
                 Container(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Column(
-                        children: [
+                        children: const [
                           Text(
                             "Developer",
                             overflow: TextOverflow.visible,
@@ -73,7 +73,7 @@ class Body extends StatelessWidget {
                   height: 275,
                   width: 335,
                   decoration: BoxDecoration(
-                    color: kTextBoxColor,
+                    color: kPrimaryLightColor,
                     border: Border.all(
                       color: Colors.black,
                       width: 1,
@@ -84,11 +84,11 @@ class Body extends StatelessWidget {
                 SizedBox(height: size.height * 0.04),
                 Container(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Column(
-                        children: [
+                        children: const [
                           Text(
                             "Content Source / Client",
                             overflow: TextOverflow.visible,
@@ -99,7 +99,7 @@ class Body extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Ms. Asmita Shrestha \nB.Sc. Nurse TU(2074) \nNursing Instructor \nB.P Smiriti Hospital and Research Center. \n\nShe was heavily involved in the content writing of this application because she possessed the necessary qualifications. Because this is a health-related application, all of the material provided is extremely sensitive and was written with her close involvement. Having a medical degree and working in a medical institute gave me the skills and experience I needed to develop content for this application.",
+                            "Ms. Asmita Shrestha \nB.Sc. Nursing TU/IOM(2074) \nNursing Instructor \nB.P Smiriti Hospital and Research Center. \n\nShe was heavily involved in the content writing of this application because she possessed the necessary qualifications. Because this is a health-related application, all of the material provided is extremely sensitive and was written with her close involvement. Having a medical degree and working in a medical institute gave me the skills and experience I needed to develop content for this application.",
                             overflow: TextOverflow.visible,
                             textAlign: TextAlign.justify,
                             style: TextStyle(
@@ -114,7 +114,7 @@ class Body extends StatelessWidget {
                   height: 290,
                   width: 335,
                   decoration: BoxDecoration(
-                    color: kTextBoxColor,
+                    color: kPrimaryLightColor,
                     border: Border.all(
                       color: Colors.black,
                       width: 1,

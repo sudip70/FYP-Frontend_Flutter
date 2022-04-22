@@ -26,37 +26,37 @@ class HospitalInfo {
 
 class Hospitals {
   Hospitals({
-    required this.Address,
-    required this.Email,
-    required this.Name,
-    required this.Phone,
-    required this.Website,
+    required this.address,
+    required this.email,
     required this.hospId,
+    required this.name,
+    required this.phone,
+    required this.website,
   });
-  late final String Address;
-  late final String Email;
-  late final String Name;
-  late final String Phone;
-  late final String Website;
+  late final String address;
+  late final String email;
   late final String hospId;
+  late final String name;
+  late final String phone;
+  late final String website;
 
   Hospitals.fromJson(Map<String, dynamic> json) {
-    Address = json['Address'];
-    Email = json['Email'];
-    Name = json['Name'];
-    Phone = json['Phone'];
-    Website = json['Website'];
+    address = json['address'];
+    email = json['email'];
     hospId = json['hosp_id'];
+    name = json['name'];
+    phone = json['phone'];
+    website = json['website'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['Address'] = Address;
-    _data['Email'] = Email;
-    _data['Name'] = Name;
-    _data['Phone'] = Phone;
-    _data['Website'] = Website;
+    _data['address'] = address;
+    _data['email'] = email;
     _data['hosp_id'] = hospId;
+    _data['name'] = name;
+    _data['phone'] = phone;
+    _data['website'] = website;
     return _data;
   }
 }

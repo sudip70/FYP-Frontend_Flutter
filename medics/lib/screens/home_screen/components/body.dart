@@ -1,14 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
 import 'package:medics/constants.dart';
 import 'package:medics/models/bloodreq.dart';
-import 'package:medics/models/medconlist.dart';
+import 'package:medics/models/covid.dart';
+import 'package:medics/models/hiv.dart';
+import 'package:medics/models/std.dart';
 import 'package:medics/paths.dart';
 import 'package:medics/screens/home_screen/components/blood_requests.dart';
+import 'package:medics/screens/home_screen/components/covid.dart';
+import 'package:medics/screens/home_screen/components/hiv.dart';
 import 'package:medics/screens/home_screen/components/search_result.dart';
+import 'package:medics/screens/home_screen/components/std.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -67,26 +73,38 @@ class Body extends StatelessWidget {
                   IconButton(
                     color: kPrimaryColor,
                     onPressed: () async {
-                      var medConlist =
-                          await getMedCondition(searchController.text);
-                      if (medConlist["med_condition"].length == 0) {
-                        noSearch(context);
-                      } else {
-                        print(medConlist["med_condition"][0]["name"]);
-                        showModalBottomSheet(
+                      try {
+                        var medConlist =
+                            await getMedCondition(searchController.text);
+                        if (medConlist["med_condition"].length == 0) {
+                          noSearch(context);
+                        } else {
+                          showModalBottomSheet(
+                              backgroundColor: kPrimaryLightColor,
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20))),
+                              context: context,
+                              builder: (context) => SearchResult(
+                                  name: medConlist["med_condition"][0]["name"],
+                                  description: medConlist["med_condition"][0]
+                                      ["description"],
+                                  symptoms: medConlist["med_condition"][0]
+                                      ["symptoms"],
+                                  cure: medConlist["med_condition"][0]
+                                      ["cure"]));
+                        }
+                      } catch (e) {
+                        Fluttertoast.showToast(
+                            msg:
+                                "Network Error. Please Check your internet connection.",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
                             backgroundColor: kPrimaryLightColor,
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20))),
-                            context: context,
-                            builder: (context) => SearchResult(
-                                name: medConlist["med_condition"][0]["name"],
-                                description: medConlist["med_condition"][0]
-                                    ["description"],
-                                symptoms: medConlist["med_condition"][0]
-                                    ["symptoms"],
-                                cure: medConlist["med_condition"][0]["cure"]));
+                            textColor: Colors.black,
+                            fontSize: 16.0);
                       }
                     },
                     icon: const Icon(Icons.search),
@@ -121,15 +139,32 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppPath.covidpage);
+                  onTap: () async {
+                    try {
+                      CovidInfo covidInfo = await getcovidDetails();
+                      List<Covid> info = covidInfo.covid;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CovidScreen(info: info)),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                          msg:
+                              "Network Error. Please Check your internet connection.",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: kPrimaryLightColor,
+                          textColor: Colors.black,
+                          fontSize: 16.0);
+                    }
                   },
                   child: Container(
                     height: 100,
                     width: 100,
                     child: Image.asset(
                       "lib/assets/images/covid.png",
-                      //width: size.width * 0.35,
                     ),
                     decoration: BoxDecoration(
                       color: kTextBoxColor,
@@ -143,8 +178,26 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(width: size.width * 0.05),
                 InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppPath.hivpage);
+                  onTap: () async {
+                    try {
+                      HivInfo hivInfo = await gethivDetails();
+                      List<Hiv> info = hivInfo.hiv;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HivScreen(info: info)),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                          msg:
+                              "Network Error. Please Check your internet connection.",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: kPrimaryLightColor,
+                          textColor: Colors.black,
+                          fontSize: 16.0);
+                    }
                   },
                   child: Container(
                     height: 100,
@@ -162,8 +215,26 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(width: size.width * 0.05),
                 InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppPath.stdpage);
+                  onTap: () async {
+                    try {
+                      StdInfo stdInfo = await getstdDetails();
+                      List<Std> info = stdInfo.std;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StdScreen(info: info)),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(
+                          msg:
+                              "Network Error. Please Check your internet connection.",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: kPrimaryLightColor,
+                          textColor: Colors.black,
+                          fontSize: 16.0);
+                    }
                   },
                   child: Container(
                     height: 100,
@@ -195,15 +266,26 @@ class Body extends StatelessWidget {
                   child: RoundedButton(
                     text: "Blood Requests",
                     press: () async {
-                      BloodReqInfo bloodReqInfo = await getbloodreqDetails();
-                      //print(bloodReqInfo.bloodreq.length.toString());
-                      List<Bloodreq> info = bloodReqInfo.bloodreq;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                BloodRequestScreen(info: info)),
-                      );
+                      try {
+                        BloodReqInfo bloodReqInfo = await getbloodreqDetails();
+                        List<Bloodreq> info = bloodReqInfo.bloodreq;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  BloodRequestScreen(info: info)),
+                        );
+                      } catch (e) {
+                        Fluttertoast.showToast(
+                            msg:
+                                "Network Error. Please Check your internet connection.",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: kPrimaryLightColor,
+                            textColor: Colors.black,
+                            fontSize: 16.0);
+                      }
                     },
                   ),
                 ),
@@ -220,8 +302,6 @@ class Body extends StatelessWidget {
                     } else {
                       emptyField(context);
                     }
-
-                    // Navigator.pushNamed(context, AppPath.postreqpage);
                   },
                 ),
               )

@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
@@ -26,8 +25,8 @@ class _AmbulancePageState extends State<AmbulancePage> {
           children: [
             Container(
               alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 50),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 50),
                 child: Text(
                   "Ambulances",
                   textAlign: TextAlign.center,
@@ -42,9 +41,8 @@ class _AmbulancePageState extends State<AmbulancePage> {
               "lib/assets/icons/ambulance_call.svg",
               height: size.height * 0.50,
             ),
-            //SizedBox(height: size.height * 0.02),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
               child: Text(
                 "Complete detail of Ambulances inside Kathmandu valley. In case of Emergency ambulance is just one call away.",
                 textAlign: TextAlign.center,
@@ -56,15 +54,25 @@ class _AmbulancePageState extends State<AmbulancePage> {
             RoundedButton(
                 text: "Get Ambulance Details",
                 press: () async {
-                  AmbulanceInfo ambulanceInfo = await getambulanceDetails();
-                  print(ambulanceInfo.ambulance.length.toString());
-                  List<Ambulance> info = ambulanceInfo.ambulance;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AmbulanceUI(info: info)),
-                  );
-                  //Container
+                  try {
+                    AmbulanceInfo ambulanceInfo = await getambulanceDetails();
+                    List<Ambulance> info = ambulanceInfo.ambulance;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AmbulanceUI(info: info)),
+                    );
+                  } catch (e) {
+                    Fluttertoast.showToast(
+                        msg:
+                            "Network Error. Please Check your internet connection.",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: kPrimaryLightColor,
+                        textColor: Colors.black,
+                        fontSize: 16.0);
+                  }
                 }),
             SizedBox(height: size.height * 0.02),
           ],
@@ -98,7 +106,7 @@ class AmbulanceDetails extends StatelessWidget {
               "Organization Name: $orgName \nAddress: $address \nPhone: $phone",
               overflow: TextOverflow.visible,
               //textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
@@ -108,7 +116,7 @@ class AmbulanceDetails extends StatelessWidget {
         height: 130,
         width: 335,
         decoration: BoxDecoration(
-          color: kTextBoxColor,
+          color: kPrimaryLightColor,
           border: Border.all(
             color: Colors.black,
             width: 1,

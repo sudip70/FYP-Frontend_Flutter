@@ -12,13 +12,13 @@ import 'package:medics/models/medconlist.dart';
 import 'package:medics/models/profile.dart';
 import 'package:medics/models/std.dart';
 
-const String backendIP = "http://100.64.225.175";
+const String backendIP = "http://192.168.18.9";
 
 const String signupURL = "$backendIP/signup/";
 const String loginURL = "$backendIP/login/";
 const String ambulanceURL = "$backendIP/ambulance/";
-const String hospitalURL = "$backendIP/hospital/";
-const String doctorURL = "$backendIP/doctor/";
+const String hospitalURL = "$backendIP/hospitals/";
+const String doctorURL = "$backendIP/doctors/";
 const String covidURL = "$backendIP/covid/";
 const String hivURL = "$backendIP/hiv/";
 const String stdURL = "$backendIP/std/";
@@ -151,7 +151,6 @@ Future getMedCondition(String con) async {
   final response =
       await http.get(Uri.parse("$getMedConditionURL$con"), headers: header);
   var resp = json.decode(response.body);
-
   return resp;
 }
 

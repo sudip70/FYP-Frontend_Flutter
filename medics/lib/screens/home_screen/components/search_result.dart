@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medics/constants.dart';
-import 'package:medics/paths.dart';
 
 class SearchResult extends StatelessWidget {
   final String? name;
@@ -21,7 +20,6 @@ class SearchResult extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        //color: Colors.red,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: Padding(
@@ -42,8 +40,6 @@ class SearchResult extends StatelessWidget {
                       ),
                       Text(
                         "$name",
-                        //overflow: TextOverflow.visible,
-                        //textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
@@ -64,45 +60,49 @@ class SearchResult extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: size.height * 0.01),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "$description",
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(fontSize: 17),
-                  ),
+                Text(
+                  "$description",
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 17),
                 ),
                 SizedBox(height: size.height * 0.01),
-                const Text(
-                  "Symptoms",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                const Padding(
+                  padding: EdgeInsets.only(right: 270),
+                  child: Text(
+                    "Symptoms",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
                 ),
                 SizedBox(height: size.height * 0.01),
                 Text(
                   "$symptoms",
-                  style: const TextStyle(fontSize: 15),
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 17),
                 ),
                 SizedBox(height: size.height * 0.01),
-                const Text(
-                  "Cure",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                const Padding(
+                  padding: EdgeInsets.only(right: 330),
+                  child: Text(
+                    "Cure",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
                 SizedBox(height: size.height * 0.01),
                 Text(
                   "$cure",
-                  style: const TextStyle(fontSize: 15),
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 17),
                 )
               ],
             ),
           ),
         ),
-        //height: 125,
         width: 335,
         decoration: BoxDecoration(
           color: kTextBoxColor,

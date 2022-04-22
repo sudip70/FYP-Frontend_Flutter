@@ -1,3 +1,4 @@
+//Importing all the required packages
 import 'package:flutter/material.dart';
 import 'package:medics/components/navigation.dart';
 import 'package:medics/components/session_controller.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const Controller(),
       routes: {
+        //App path for different pages and screen of the application
         AppPath.welcomepage: (context) => WelcomeScreen(),
         AppPath.loginpage: (context) => const LoginScreen(),
         AppPath.signuppage: (context) => const SignupScreen(),
@@ -43,14 +45,8 @@ class MyApp extends StatelessWidget {
         AppPath.aboutuspage: (context) => AboutUsScreen(),
         AppPath.profilepage: (context) => const ProfileScreen(),
         AppPath.feedbackpage: (context) => const FeedbackScreen(),
-        AppPath.covidpage: (context) => const CovidScreen(),
-        AppPath.stdpage: (context) => const STDScreen(),
-        AppPath.hivpage: (context) => const HIVScreen(),
         AppPath.mainpage: (context) => const ButtomNav(),
-        //AppPath.bloodreqpage: (context) =>  BloodRequestScreen(info: [],),
         AppPath.postreqpage: (context) => const PostRequestScreen(),
-        // AppPath.ambulanceUI: (context) => const AmbulanceUI(info: info)
-        //AppPath.search: (context) => DataSearch()
       },
     );
   }
