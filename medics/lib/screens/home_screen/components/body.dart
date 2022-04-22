@@ -26,6 +26,19 @@ class Body extends StatelessWidget {
         });
   }
 
+  void noSearch(BuildContext context) {
+    var alertDialog = const AlertDialog(
+      title: Text("Condition not Found!!!"),
+      content: Text(
+          "Condition you have search was not found. Please check the name of the condition. Thank You!"),
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,15 +67,27 @@ class Body extends StatelessWidget {
                   IconButton(
                     color: kPrimaryColor,
                     onPressed: () async {
-                      Medcondition medConlist =
+                      var medConlist =
                           await getMedCondition(searchController.text);
-                      List<MedCondition> info = medConlist.medCondition;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                SearchResultScreen(info: info)),
-                      );
+                      if (medConlist["med_condition"].length == 0) {
+                        noSearch(context);
+                      } else {
+                        print(medConlist["med_condition"][0]["name"]);
+                        showModalBottomSheet(
+                            backgroundColor: kPrimaryLightColor,
+                            isScrollControlled: true,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20))),
+                            context: context,
+                            builder: (context) => SearchResult(
+                                name: medConlist["med_condition"][0]["name"],
+                                description: medConlist["med_condition"][0]
+                                    ["description"],
+                                symptoms: medConlist["med_condition"][0]
+                                    ["symptoms"],
+                                cure: medConlist["med_condition"][0]["cure"]));
+                      }
                     },
                     icon: const Icon(Icons.search),
                     splashColor: kPrimaryColor,

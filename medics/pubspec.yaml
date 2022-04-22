@@ -40,6 +40,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   clay_containers: ^0.3.2
   search_page: ^2.0.0+1
+  fluttertoast: ^8.0.9
   
 
 dev_dependencies:

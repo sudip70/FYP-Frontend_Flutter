@@ -18,6 +18,15 @@ class Controller extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
+          //SizedBox(height: size.height * 0.15),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0, bottom: 10),
+            child: Image.asset(
+              "lib/assets/images/education.gif",
+              height: size.height * 0.45,
+            ),
+          ),
+          SizedBox(height: size.height * 0.03),
           const Padding(
             padding: EdgeInsets.only(top: 100),
             child: Text(
@@ -25,15 +34,6 @@ class Controller extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
-          //SizedBox(height: size.height * 0.15),
-          Padding(
-            padding: const EdgeInsets.only(top: 30.0, bottom: 10),
-            child: SvgPicture.asset(
-              "lib/assets/icons/get_started.svg",
-              height: size.height * 0.45,
-            ),
-          ),
-          SizedBox(height: size.height * 0.03),
           const Text(
             "Get all the information you need. \nAnd Save some Lives.",
             textAlign: TextAlign.center,

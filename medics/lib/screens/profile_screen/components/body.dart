@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/constants.dart';
+import 'package:medics/models/profile.dart';
 import 'package:medics/paths.dart';
 
 class Body extends StatelessWidget {
@@ -34,26 +35,48 @@ class Body extends StatelessWidget {
               right: 120,
               bottom: 10,
             ),
-            child: Container(
-              child: Image.asset(
-                "lib/assets/images/Profile.png",
-                //width: size.width * 0.35,
-              ),
-              decoration: BoxDecoration(
-                color: kTextBoxColor,
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
+            child: GestureDetector(
+              onTap: () async {
+                try {
+                  ProfileInfo data = await getProfile();
+                  var alertDialog = AlertDialog(
+                    title: Column(
+                      children: [
+                        Text("Name: ${data.Name}"),
+                        Text("Email: ${data.Email}")
+                      ],
+                    ),
+                  );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alertDialog;
+                      });
+                } catch (e) {
+                  var alertDialog = AlertDialog(
+                    title: Text("Guest"),
+                  );
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alertDialog;
+                      });
+                }
+              },
+              child: Container(
+                child: Image.asset(
+                  "lib/assets/images/Profile.png",
+                  //width: size.width * 0.35,
                 ),
-                borderRadius: BorderRadius.circular(100),
+                decoration: BoxDecoration(
+                  color: kTextBoxColor,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(100),
+                ),
               ),
-            ),
-          ),
-          Text(
-            "Name: \nE-mail: ",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
             ),
           ),
           SizedBox(height: size.height * 0.03),

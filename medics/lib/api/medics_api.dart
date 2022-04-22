@@ -9,9 +9,10 @@ import 'package:medics/models/doctors.dart';
 import 'package:medics/models/hiv.dart';
 import 'package:medics/models/hospitals.dart';
 import 'package:medics/models/medconlist.dart';
+import 'package:medics/models/profile.dart';
 import 'package:medics/models/std.dart';
 
-const String backendIP = "http://192.168.18.9";
+const String backendIP = "http://100.64.225.175";
 
 const String signupURL = "$backendIP/signup/";
 const String loginURL = "$backendIP/login/";
@@ -26,6 +27,7 @@ const String postreqURL = "$backendIP/postreq/";
 const String recommendURL = "$backendIP/medconlist/";
 const String deleteURL = "$backendIP/account_del/";
 const String getMedConditionURL = "$backendIP/med_condition/?con=";
+const String getProfileURL = "$backendIP/profile/";
 
 Future postlogin(String email, String password) async {
   var requestBody =
@@ -149,8 +151,21 @@ Future getMedCondition(String con) async {
   final response =
       await http.get(Uri.parse("$getMedConditionURL$con"), headers: header);
   var resp = json.decode(response.body);
-  print(resp.toString());
+
   return resp;
+}
+
+Future getProfile() async {
+  FlutterSecureStorage? cF = const FlutterSecureStorage();
+  String? at = await cF.read(key: 'token');
+  dynamic authHeader = <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Authorization': 'Bearer $at',
+  };
+  final response =
+      await http.get(Uri.parse(getProfileURL), headers: authHeader);
+  var resp = jsonDecode(response.body);
+  return ProfileInfo.fromJson(resp);
 }
 
 Future deleteUser() async {

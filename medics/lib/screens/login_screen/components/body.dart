@@ -63,8 +63,6 @@ class _BodyState extends State<Body> {
             press: () async {
               var loginResponse = await postlogin(
                   emailController.text, passwordController.text);
-              print(loginResponse.runtimeType);
-              print(loginResponse);
               if (loginResponse["success"] == "false") {
                 String msg = loginResponse["msg"];
                 var alertDialog = AlertDialog(

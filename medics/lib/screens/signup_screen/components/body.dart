@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
 import 'package:medics/components/rounded_input_field.dart';
@@ -82,18 +83,26 @@ class _BodyState extends State<Body> {
                         return alertDialog;
                       });
                 } else if (signupResponse["success"] == "true") {
-                  String msg = signupResponse["msg"];
-                  var alertDialog = AlertDialog(
-                    title: const Text("Success!!!"),
-                    content: Text(msg),
-                  );
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return alertDialog;
-                      });
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //     context, AppPath.loginpage, (route) => false);
+                  Fluttertoast.showToast(
+                      msg: "Signed Up Successfully!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: kPrimaryLightColor,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
+                  // String msg = signupResponse["msg"];
+                  // var alertDialog = AlertDialog(
+                  //   title: const Text("Success!!!"),
+                  //   content: Text(msg),
+                  // );
+                  // showDialog(
+                  //     context: context,
+                  //     builder: (BuildContext context) {
+                  //       return alertDialog;
+                  //     });
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppPath.loginpage, (route) => false);
                 }
               }),
           Row(
