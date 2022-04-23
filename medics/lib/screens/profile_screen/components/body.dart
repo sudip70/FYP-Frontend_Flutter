@@ -138,6 +138,14 @@ class Body extends StatelessWidget {
             press: () async {
               FlutterSecureStorage? cache = const FlutterSecureStorage();
               await cache.deleteAll();
+              Fluttertoast.showToast(
+                  msg: "Logged Out!! Have a great day.",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: kPrimaryLightColor,
+                  textColor: Colors.black,
+                  fontSize: 16.0);
               Navigator.pushNamed(context, AppPath.welcomepage);
             },
           ),

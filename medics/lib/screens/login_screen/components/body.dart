@@ -77,6 +77,14 @@ class _BodyState extends State<Body> {
                         return alertDialog;
                       });
                 } else {
+                  Fluttertoast.showToast(
+                      msg: "Logged In Successfully!!!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: kPrimaryLightColor,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
                   storeToken(loginResponse["access_token"]);
                   Navigator.pushNamed(context, AppPath.mainpage);
                 }
