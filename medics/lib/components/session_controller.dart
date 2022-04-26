@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medics/api/medics_api.dart';
 import 'package:medics/components/rounded_button.dart';
-import 'package:medics/constants.dart';
 import 'package:medics/paths.dart';
 
 class Controller extends StatelessWidget {

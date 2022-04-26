@@ -12,7 +12,7 @@ import 'package:medics/models/medconlist.dart';
 import 'package:medics/models/profile.dart';
 import 'package:medics/models/std.dart';
 
-const String backendIP = "http://192.168.18.9";
+const String backendIP = "http://172.16.6.212";
 
 const String signupURL = "$backendIP/signup/";
 const String loginURL = "$backendIP/login/";
